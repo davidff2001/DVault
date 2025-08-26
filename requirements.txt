@@ -1,0 +1,2 @@
+sqlcipher3-binary
+cryptography
