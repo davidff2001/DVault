@@ -1,5 +1,6 @@
 import sys
 import random
+from getpass import getpass
 
 from crypto import (generate_hash, generate_key)
 from dbfunctions import (create_tables, check_username_exists, add_user, get_master_password_hashed,
@@ -123,7 +124,7 @@ def create_user():
     # Validate the master password input
     valid = False
     while not valid:
-        master_password = input('Type a master password: ')
+        master_password = getpass('Type a master password: ')
         if len(master_password) > 20:
             print('The master password should not exceed 20 characters. Please try again.')
         elif not master_password.strip():
@@ -152,7 +153,7 @@ def create_user():
 def select_user():
     # Prompt user to input username and password
     username = input("\nInsert username:")
-    insert_password = input("\nInsert Password:")
+    insert_password = getpass("\nInsert Password:")
 
     # Check if password length is greater than 20 characters
     if len(insert_password) > 20:
@@ -182,7 +183,7 @@ def delete_user_menu():
     # Prompt the user to enter the username and password of the account to be deleted
 
     username = input("\nInsert username:")
-    insert_password = input("\nInsert Password:")
+    insert_password = getpass("\nInsert Password:")
 
     # If the length of the password entered by the user is greater than 20 characters,
     # display an error message and return to the password manager menu
@@ -299,7 +300,7 @@ def add_account_menu(user_id):
         username = input("Username: ")
         user_email = input("Email: ")
         web_page = input("Web page: ")
-        password = input("Password: ")
+        password = getpass("Password: ")
 
         add_account(service, username, user_email, web_page, password, user_id)
 
@@ -464,7 +465,7 @@ def update_website_menu(user_id):
 def update_password_menu(user_id):
     # Prompt the user to enter the name of the service they want to update and the new password.
     service = input("Enter the service you want to update: ")
-    new_password = input("New password: ")
+    new_password = getpass("New password: ")
 
     # Check if the service name is empty, and display an error message if it is.
     if not service:
