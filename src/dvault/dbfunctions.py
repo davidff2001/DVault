@@ -3,13 +3,20 @@
 # executing all the options that the password_manager provides
 
 import sqlite3
-
+from pathlib import Path
 
 def connect():
+
+    # Create db directory if it does not exist
+    # Make sure tildes are expanded
+    p = Path("~/.dvault").expanduser().resolve()
+    p.mkdir(parents=True, exist_ok=True)
+    dvault_path = str(p)
+
     # Attempt to connect to the 'passmdb' SQLite database
     try:
         # Create a connection object to the database
-        conn = sqlite3.connect('passmdb')
+        conn = sqlite3.connect(dvault_path + '/passmdb')
 
         # Create a cursor object to execute SQL commands
         c = conn.cursor()
