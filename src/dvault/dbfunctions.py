@@ -2,14 +2,16 @@
 # Here are all the functions needed to create the database on SQL and fill them up with the necessary data as well as
 # executing all the options that the password_manager provides
 
-import sqlite3
 from pathlib import Path
+from crypto import generate_hash
+from sqlcipher3 import dbapi2 as sqlite3
+
 
 # Global db connection
 _CONN = None
 
 
-def connect():
+def connect(master_password):
 
     # Create db directory if it does not exist
     # Make sure tildes are expanded
@@ -18,18 +20,23 @@ def connect():
     dvault_path = str(p)
 
     # Attempt to connect to the 'passmdb' SQLite database
-    try:
-        # Create a connection object to the database
-        global _CONN
+    # Create a connection object to the database
+    global _CONN
 
-        _CONN = sqlite3.connect(dvault_path + '/passmdb')
+    _CONN = sqlite3.connect(dvault_path + '/passmdb')
 
-        return _CONN
+    c = _CONN.cursor()
 
-    # Catch any exceptions that occur during the connection process
-    except Exception as e:
-        # Print an error message that includes the exception message
-        print(f"Error:'{e}'")
+    password_hashed = generate_hash(master_password)
+    password_hex = password_hashed.hex()
+    # Should be safe because given password is hashed
+    # has no user input
+    # guaranteed to have only 0-9 and A-F
+    c.execute(f"PRAGMA key = \"x'{password_hex}'\"")
+
+    _CONN.commit()
+
+    return _CONN
 
 
 def disconnect():

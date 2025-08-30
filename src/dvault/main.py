@@ -95,13 +95,24 @@ def password_manager_menu():
                 print("Invalid option. Please choose a valid option.")
 
 def create_user():
-    # Create necessary tables in the database
-    connect()
-    create_tables()  # calling the create_tables() function to create the necessary tables in the database
-
     # Ask the user to enter a username and a master password
     print('\nNext you will need to add an username and a master password')
     print('\nPlease do not forget this or you would not be able to access your data')
+
+    # Validate the master password input
+
+    valid = False
+    while not valid:
+        master_password = getpass('Type a master password: ')
+        if len(master_password) > 20:
+            print('The master password should not exceed 20 characters. Please try again.')
+        elif not master_password.strip():
+            print('Master password cannot be blank. Please try again.')
+        else:
+            valid = True
+
+    connect(master_password)  # Create necessary tables in the database
+    create_tables()  # calling the create_tables() function to create the necessary tables in the database
 
     # Validate the username input
     valid = False
@@ -111,17 +122,6 @@ def create_user():
             print('\nUsername already exists. Please try again.')
         elif not username.strip():
             print('\nUsername cannot be blank. Please try again.')
-        else:
-            valid = True
-
-    # Validate the master password input
-    valid = False
-    while not valid:
-        master_password = getpass('Type a master password: ')
-        if len(master_password) > 20:
-            print('The master password should not exceed 20 characters. Please try again.')
-        elif not master_password.strip():
-            print('Master password cannot be blank. Please try again.')
         else:
             valid = True
 
