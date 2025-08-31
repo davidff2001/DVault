@@ -146,27 +146,10 @@ def select_user():
     # Prompt user to input username and password
     username = input("\nInsert username:")
     insert_password = getpass("\nInsert Password:")
-
-    connect()
-
-    # Check if password length is greater than 20 characters
-    if len(insert_password) > 20:
-        print("\nIncorrect password")
-        disconnect()
+    if connect(insert_password) == None:
+        print('\nIncorrect Password')
         return
-
-    # Hash the input password and retrieve the hashed password from the database for the given username
-
-    given_hash = generate_hash(insert_password)
-    stored_hash = get_master_password_hashed(username)
-
-    # Compare the hashed passwords to grant or deny access
-    if given_hash == stored_hash:
-        print("\nAccess granted.")
-        account_menu(username)  # Redirect to account menu
-    else:
-        print("Access denied")
-
+    account_menu(username)
     disconnect()
 
 def delete_user_menu():

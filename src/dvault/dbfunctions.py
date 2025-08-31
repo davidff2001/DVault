@@ -33,16 +33,21 @@ def connect(master_password):
     # has no user input
     # guaranteed to have only 0-9 and A-F
     c.execute(f"PRAGMA key = \"x'{password_hex}'\"")
+    try:
+        c.execute("SELECT count(*) FROM sqlite_master")
 
-    _CONN.commit()
+    except sqlite3.DatabaseError:
+        disconnect()
+        return None
 
     return _CONN
 
 
 def disconnect():
-
+    global _CONN
     if _CONN is not None:
         _CONN.close()
+        _CONN = None
 
 def create_tables():
     # Connect to the database
