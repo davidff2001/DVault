@@ -2,8 +2,8 @@ import sys
 import random
 from getpass import getpass
 
-from crypto import (generate_hash, generate_key)
-from dbfunctions import (connect,disconnect, create_tables, check_username_exists, add_user, get_master_password_hashed,
+from dvault.crypto import (generate_hash, generate_key)
+from dvault.dbfunctions import (connect,disconnect, create_tables, check_username_exists, add_user, get_master_password_hashed,
                          get_user_id, delete_user, delete_account_table, list_services, add_account,
                          show_account_data, update_account_username, update_account_password,
                          update_account_user_email, update_account_service, check_service, update_account_web_page)

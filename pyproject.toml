@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dvault"
+version = "0.1"
+dependencies = [
+    "cryptography",
+    "sqlcipher3-wheels"
+]
+requires-python = ">= 3.8"
+authors = [
+    {name = "David Fernandez", email = "davidffernandez@outlook.es"},
+    {name = "Jorge Fernandez", email = "jorgefz.fernandez@gmail.com"}
+]
+description = "Encrypted password vault app"
+readme = "README.md"
+license = "MIT"
+
+classifiers = [
+    "Programming Language :: Python :: 3"
+]
+
+[project.urls]
+Repository = "https://github.com/davidff2001/DVault"
+
+[project.scripts]
+dvault = "dvault:dvault_menu"

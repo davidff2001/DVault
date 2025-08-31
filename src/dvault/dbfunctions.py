@@ -3,7 +3,7 @@
 # executing all the options that the password_manager provides
 
 from pathlib import Path
-from crypto import generate_hash
+from dvault.crypto import generate_hash
 from sqlcipher3 import dbapi2 as sqlite3
 
 

@@ -10,17 +10,13 @@ Password manager and generator written in Python and SQLite.
 ## Install
 
 ```
-git clone https://github.com/davidff2001/DVault
-cd DVault
-pip install -r requirements.txt
+git clone https://github.com/davidff2001/DVault dvault
+pip install dvault 
 ```
 
 ## Usage
 
-To execute the program succesfully please first go to this directory
-from your terminal
-
-Type "python execute.py" to run the program 
+Run the command "dvault" to access the interface.
 
  
 
