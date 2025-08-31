@@ -1,2 +1,2 @@
-sqlcipher3-binary
+sqlcipher3-wheels
 cryptography
