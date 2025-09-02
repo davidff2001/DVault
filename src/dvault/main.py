@@ -16,7 +16,7 @@ def program_choose_menu():
 
         print("\n|----------------------------------------------------------------------------|")
         print('|                                                                            |')
-        print('|     Welcome to the Secure Password Generator and Password Manager 3.0      |')
+        print('|     Welcome to DVault the Secure Password Generator and Manager            |')
         print('|               Developed By David Fernandez, May 2023                       |')
         print('|                                                                            |')
         print('|----------------------------------------------------------------------------|')
